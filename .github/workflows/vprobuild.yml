@@ -16,10 +16,10 @@ jobs:
       - name: Build artifacts
         run: | 
           mvn install
-          mv target/vprofile-v2.war .
+          mv target/vprofile-v2.jar .
           rm -rf target
           mkdir target
-          mv vprofile-v2.war target/
+          mv vprofile-v2.jar target/
           ls -l target/
 
       - name: Run Aqua scanner
