@@ -21,6 +21,10 @@ jobs:
           mkdir target
           mv vprofile-v2.jar target/
           ls -l target/
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+         name: /src/target/vprofile-v2.jar
 
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
