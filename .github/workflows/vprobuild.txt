@@ -19,17 +19,18 @@ jobs:
           mv target/vprofile-v2.jar .
           rm -rf target
           mkdir target
-          mv vprofile-v2.jar target/
+          mv target/vprofile-v2.jar ./
           ls -l target/
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
+      - name: Upload JAR artifact (Optional)  # Add this step if you want to upload the JAR
+        uses: actions/upload-artifact@v4
         with:
-         name: /src/target/vprofile-v2.jar
+          name: vprofile-v2.jar
+          path: ./vprofile-v2.jar 
 
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
-          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1  /src/target/vprofile-v2.jar
+          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 ./vprofile-v2.jar
           # Access Aqua credentials from secrets
 
 env:
