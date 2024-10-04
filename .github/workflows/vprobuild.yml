@@ -25,13 +25,13 @@ jobs:
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
-          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 target/
-          # Access Aqua credentials from secrets
+          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1  /home/runner/work/javarepo/javarepo/target/vprofile-v2.jar
+          
 
 env:
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
   TRIVY_RUN_AS_PLUGIN: 'aqua'
-  ACTIONS_RUNTIME_TOKEN: ${{ secrets.TOKEN }}  # Might not be needed depending on your workflow setup
+  ACTIONS_RUNTIME_TOKEN: ${{ secrets.TOKEN }}  
   AQUA_KEY: ${{ secrets.AQUA_KEY }}
   AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
   TRIVY_USERNAME: ${{ secrets.TRIVY_USERNAME }}
