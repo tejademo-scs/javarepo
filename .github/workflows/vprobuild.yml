@@ -19,7 +19,7 @@ jobs:
           mv target/vprofile-v2.jar .
           rm -rf target
           mkdir target
-          mv target/vprofile-v2.jar ./
+          mv vprofile-v2.jar target/vprofile-v2.jar
           ls -l target/
       - name: Upload JAR artifact (Optional)  # Add this step if you want to upload the JAR
         uses: actions/upload-artifact@v4
