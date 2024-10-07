@@ -35,10 +35,10 @@ jobs:
           cd tejademo-scs/javarepo
           git config --global user.name "Chittamuri Teja"
           git config --global user.email "teja.chittamuri@aquasec.com"
-          git pull origin main
+          git pull origin main --no-rebase
           git add vprofile-v2.jar
           git commit -m "Added latest JAR file"
-          git push origin -u main
+          git push origin main
 
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
