@@ -37,7 +37,7 @@ jobs:
           git config --global user.email "teja.chittamuri@aquasec.com"
           git add vprofile-v2.jar
           git commit -m "Added latest JAR file"
-          git push origin -u main
+          git push origin HEAD:main
 
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
