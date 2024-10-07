@@ -31,8 +31,8 @@ jobs:
 
       - name: Copy JAR to target repository
         run: |
-          cp target/vprofile-v2.jar tejademo-scs/javarepo
-          cd tejademo-scs/javarepo
+          cp target/vprofile-v2.jar tejademo-scs/javarepo/
+          cd tejademo-scs/javarepo/
           git config --global user.name "Chittamuri Teja"
           git config --global user.email "teja.chittamuri@aquasec.com"
           git pull origin main --ff-only
