@@ -22,11 +22,27 @@ jobs:
           mkdir target
           mv vprofile-v2.jar target/vprofile-v2.jar
           ls -l target/
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: tejademo-scs/javarepo # Replace with target repo details
+          token: ${{ secrets.TOKEN }}  # Or use a personal access token if needed
+          path: tejademo-scs/javarepo
+
+      - name: Copy JAR to target repository
+        run: |
+          cp target/vprofile-v2.jar tejademo-scs/javarepo
+          cd tejademo-scs/javarepo
+          git config --global user.name "Chittamuri Teja"
+          git config --global user.email "teja.chittamuri@aquasec.com"
+          git add vprofile-v2.jar
+          git commit -m "Added latest JAR file"
+          git push origin main
 
       - name: Run Aqua scanner
         uses: docker://aquasec/aqua-scanner
         with:
-          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1  /home/ubuntu/actions-runner/_work/javarepo/javarepo/target/vprofile-v2.jar
+          args: trivy fs --sast --scanners misconfig,vuln,secret --db-repository=registry.aquasec.com/trivy-db:2 --checks-bundle-repository=registry.aquasec.com/trivy-checks:1 --java-db-repository=registry.aquasec.com/trivy-java-db:1 .
 
 env:
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
