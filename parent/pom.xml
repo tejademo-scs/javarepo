@@ -102,7 +102,7 @@
         <swagger-maven-plugin.version>3.1.4</swagger-maven-plugin.version>
     </properties>
 
-    <dependencyManagement>
+    <!-- dependencyManagement -->
         <dependencies>
             <!-- Security -->
             <dependency>
@@ -314,7 +314,7 @@
                 <version>${springfox.version}</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>
+    <!-- /dependencyManagement -->
 
     <build>
         <pluginManagement>
